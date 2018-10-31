@@ -407,8 +407,9 @@ export class ChaincodeMockStub implements MockStub, ChaincodeStub {
      * @param {string} mspId
      * @returns {void}
      */
-    setCreator(mspId: string): void {
+    setCreator(mspId: string, usercert: string = this.usercert): void {
         this.mspId = mspId;
+        this.usercert = usercert
     }
 
     getCreator(): ChaincodeProposalCreator {
