@@ -282,14 +282,15 @@ describe('Test Mockstub', () => {
 
         const stub = new ChaincodeMockStub('mock', chaincode);
         // Set the right mspId
-        stub.setCreator('anotherMSPId');
+        stub.setCreator('anotherMSPId', 'cret');
 
         const res1: ChaincodeResponse = await stub.mockInvoke('test', ['isRightMspId']);
+        console.log('--------------------->', res1)
         expect(res1.status).to.eq(200);
         expect(res1.payload).to.equal(true);
 
         // Set a bad mspId
-        stub.setCreator('aBadMSPId');
+        stub.setCreator('aBadMSPId', 'cret');
 
         const res2: ChaincodeResponse = await stub.mockInvoke('test', ['isRightMspId']);
         expect(res2.status).to.eq(200);
