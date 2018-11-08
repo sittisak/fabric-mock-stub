@@ -172,6 +172,10 @@ export class ChaincodeMockStub implements MockStub, ChaincodeStub {
      * @returns {Promise<"fabric-shim".ChaincodeResponse>}
      */
     async mockInit(uuid: string, args: string[], transientMap?: StateMap): Promise<ChaincodeResponse> {
+        const argNotString = args.findIndex(arg => typeof arg !== 'string')
+        if(argNotString !== -1) {
+            throw new Error(`args are should be type string.`);
+        }
         this.args = args;
         this.mockTransactionStart(uuid, transientMap);
         const res = await this.cc.Init(this);
@@ -188,6 +192,10 @@ export class ChaincodeMockStub implements MockStub, ChaincodeStub {
      * @returns {Promise<"fabric-shim".ChaincodeResponse>}
      */
     async mockInvoke(uuid: string, args: string[], transientMap?: StateMap): Promise<ChaincodeResponse> {
+        const argNotString = args.findIndex(arg => typeof arg !== 'string')
+        if(argNotString !== -1) {
+            throw new Error(`args are should be type string.`);
+        }
         this.args = args;
         this.mockTransactionStart(uuid, transientMap);
         const res = await this.cc.Invoke(this);
