@@ -224,8 +224,9 @@ export class ChaincodeMockStub implements MockStub, ChaincodeStub {
         }
 
         const result = await otherStub.mockInvoke(this.txID, args);
+        const payload = result.payload
         result.payload = {
-            toBuffer: () => result.payload
+            toBuffer: () => payload
         }
         return result
     }

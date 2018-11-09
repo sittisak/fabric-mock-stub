@@ -358,10 +358,11 @@ describe('Test Mockstub', () => {
 
         stub.mockPeerChaincode("pingcode/mychannel", pingmockchaincode);
 
-        const response: ChaincodeResponse = await stub.mockInvoke('test', ['crossChaincode']);
+        // const response: ChaincodeResponse = await stub.mockInvoke('test', ['crossChaincode']);
+        const response: any = await stub.mockInvoke('test', ['crossChaincode']);
 
         expect(response.status).to.eq(200);
-        // expect(response.payload.toBuffer()).to.equal("pong!");
+        expect(response.payload.toBuffer()).to.equal("pong!");
     });
 
     it('Should not be able to invoke other chaincode when no chaincode mocked', async () => {
