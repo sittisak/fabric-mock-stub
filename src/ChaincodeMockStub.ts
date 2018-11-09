@@ -223,7 +223,7 @@ export class ChaincodeMockStub implements MockStub, ChaincodeStub {
             throw new Error(`Chaincode ${chaincodeName} could not be found. Please create this using mockPeerChaincode.`);
         }
 
-        const result = otherStub.mockInvoke(this.txID, args);
+        const result = await otherStub.mockInvoke(this.txID, args);
         result.payload = {
             toBuffer: () => result.payload
         }
